@@ -1,0 +1,80 @@
+/* Top bar would break after login - too wide */
+
+.top-bar {
+    max-width: 1070px;
+}
+
+/* Navbar non-highlighted items */
+
+.top-bar-section .dropdown li a {
+    background: #272822;
+}
+
+/* Navbar highlighted items */
+
+.top-bar-section li a:not(.button):hover {
+        background: #34362e;
+}
+
+.top-bar-section .dropdown li a:hover {
+        background: #34362e;
+}
+
+@media only screen and (min-width: 58.75em) {
+        .top-bar-section .dropdown li a:hover {
+                background: #34362e;
+        }
+}
+
+
+/* Blog teaser - HTML - can have its own paragraphs */
+
+.tease__intro p {
+    font-size: 1em;
+}
+
+
+/* Blog post byline */
+
+.newsdate {
+    margin: -0.5em 0 2em 0;
+}
+
+.newsitem {
+    margin-bottom: 60px;
+}
+
+/* Talk schedule */
+
+table.calendar th {
+    width: 360px;
+}
+
+table.calendar th.time {
+    width: 79px;
+}
+
+table.calendar {
+    font-size: 1em;
+}
+
+table.calendar td.slot {
+    font-weight: bold;
+}
+
+table.calendar td.slot p {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+table.calendar td span.speaker {
+    font-weight: normal;
+}
+
+table.calendar td span.title a {
+    text-decoration: none;
+}
+
+table.calendar td span.title a:hover {
+    text-decoration: underline;
+}
