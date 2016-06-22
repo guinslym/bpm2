@@ -1,39 +1,18 @@
-#import common configuration
-from .base import *
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'lkasdjf;sj"/$jslk;dfsjlkfhwehs02370sdklflksj'
+from .base import *
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = 'p-h93iwrvc0+3e%m9)8(b(ml1clqwih^u=7p%p+o$ln$^458kn'
 
-ALLOWED_HOSTS = ['*',]
+DEBUG=True
+TEMPLATE_DEBUG_MODE = True
 
-
-# Application definition
-
-INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
-    #third-party
-    'django_extensions',
+DEV_APPS = (
     'debug_toolbar',
-    #'rest_framework',
-    #'MySQLdb',
-    #'metasettings',
-    'bootstrap_pagination',
-    'taggit',
-    #application
-    'applications.events',
 )
+INSTALLED_APPS = BASE_APPS + DEV_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -46,26 +25,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.i18n',
-            ],
-        },
-    },
-]
-
+# Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
@@ -75,14 +39,50 @@ DATABASES = {
     }
 }
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join('staticfiles')
-STATIC_ROOT = os.path.join('staticfiles_dev')
+# LOGGING
+LOGGING = {
+     'version': 1,
+     'disable_existing_loggers': True,
+     'formatters': {
+         'simple': {
+             'format': '[%(asctime)s] %(levelname)s : %(message)s'
+         },
+         'verbose': {
+             'format': '[%(asctime)s] %(levelname)s %(filename) % : %(message)s'
+         },
+     },
+     'handlers': {
+         'file': {
+             'level': 'INFO',
+             'class': 'logging.FileHandler',
+             'formatter': 'verbose',
+             'filename': BASE_DIR+'/logs/dev.log',
+             'mode': 'a',
+         },
+     },
+     'loggers': {
+         'django': {
+             'handlers': ['file'],
+             'level':'INFO',
+             'propagate': True,
+         },
+         'applications.delivrem.views': {
+             'handlers': ['file'],
+             'level':'INFO',
+             'propagate': True,
+         },
+         'applications.delivrem.utils': {
+             'handlers': ['file'],
+             'level':'INFO',
+             'propagate': True,
+         },
+         'applications.delivrem.tweets': {
+             'handlers': ['file'],
+             'level':'INFO',
+             'propagate': True,
+         },
+     },
+ }
 
-#List of directories that Django could find my Static files
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
