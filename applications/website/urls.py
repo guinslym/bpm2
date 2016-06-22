@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import WebsiteListView, WebsiteDetailView
+#from .views import WebsiteListView, WebsiteDetailView
 from django.views.generic import TemplateView
 
 urlpatterns = [
