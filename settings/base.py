@@ -54,7 +54,7 @@ THIRD_PARTY_APPS =  (
     'social.apps.django_app.default',
 )
 LOCAL_APPS = (
-    #'applications.biblio',
+    'applications.website',
     #'applications.account',
 )
 
