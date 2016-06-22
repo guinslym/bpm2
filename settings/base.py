@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
-WSGI_APPLICATION = 'showmylibrary.wsgi.application'
-ROOT_URLCONF = 'showmylibrary.urls'
+WSGI_APPLICATION = 'bpm2.wsgi.application'
+ROOT_URLCONF = 'bpm2.urls'
 SITE_ID = 1
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -54,8 +54,8 @@ THIRD_PARTY_APPS =  (
     'social.apps.django_app.default',
 )
 LOCAL_APPS = (
-    'applications.biblio',
-    'applications.account',
+    #'applications.biblio',
+    #'applications.account',
 )
 
 CACHES = {
